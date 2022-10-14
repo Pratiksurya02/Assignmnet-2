@@ -79,7 +79,7 @@
         "color": {"value": "black"},
         "opacity": {
           "condition": {
-            "test": "datum['LGA'] == 'MONASH'||datum['LGA'] == 'HUME'||datum['LGA'] == 'FRANKSTON'||datum['LGA'] == 'CASEY'||datum['LGA'] == 'GREATER DANDENONG'||datum['LGA'] == 'WYNDHAM'||datum['LGA'] == 'BIRMBANK'||datum['LGA'] == 'YARRA RANGES'",
+            "test": "datum['LGA'] == 'MONASH'||datum['LGA'] == 'SUNWAY'||datum['LGA'] == 'APU'||datum['LGA'] == 'HELP'||datum['LGA'] == 'UPM'||datum['LGA'] == 'UM'||datum['LGA'] == 'MANIPAL'||datum['LGA'] == 'BAC'",
             "value": 1
           },
           "value": 0
