@@ -1,0 +1,97 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "width": 600,
+  "height": 400,
+  "title": "Bullying vs NAPLAN Results",
+  "data": {
+    "url": "https://raw.githubusercontent.com/Pratik/FIT3179/main/Data/JoinedDataFiltered.csv"
+  },
+  "params": [
+    {
+      "name": "Year",
+      "value": 2008,
+      "bind": {
+        "input": "range",
+        "min": 2008,
+        "max": 2016,
+        "step": 1,
+        "name": "Select year: "
+      }
+    }
+  ],
+  "transform": [{"filter": "datum.Year==Year"}],
+  "encoding": {
+    "x": {
+      "field": "NaplanAvg",
+      "type": "quantitative",
+      "title": "NAPLAN Score",
+      "scale": {"domain": [0.87, 1]}
+    },
+    "y": {
+      "field": "Portion Bullied",
+      "title": "Percent of students bullied",
+      "type": "quantitative",
+      "scale": {"domain": [0, 40]}
+    }
+  },
+  "layer": [
+    {
+      "mark": "circle",
+      "encoding": {
+        "size": {
+          "field": "Total Students",
+          "type": "quantitative",
+          "scale": {
+            "type": "threshold",
+            "domain": [1000, 2000, 3000, 4000],
+            "range": [50, 100, 150, 200, 250]
+          }
+        },
+        "color": {"field": "Section of State", "type": "nominal"},
+        "tooltip": [
+          {"field": "LGA", "type": "nominal", "title": "Local Government Area"},
+          {"field": "Section of State", "type": "nominal"},
+          {"field": "Total Students", "type": "quantitative"},
+          {
+            "field": "Portion Bullied",
+            "type": "quantitative",
+            "title": "Percent Bullied"
+          },
+          {
+            "field": "NaplanAvg",
+            "type": "quantitative",
+            "title": "Naplan Score"
+          },
+          {"field": "Year", "type": "quantitative"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 10,
+        "fontSize": 11
+      },
+      "encoding": {
+        "text": {"field": "LGA", "type": "nominal"},
+        "color": {"value": "black"},
+        "opacity": {
+          "condition": {
+            "test": "datum['LGA'] == 'MONASH'||datum['LGA'] == 'HUME'||datum['LGA'] == 'FRANKSTON'||datum['LGA'] == 'CASEY'||datum['LGA'] == 'GREATER DANDENONG'||datum['LGA'] == 'WYNDHAM'||datum['LGA'] == 'BIRMBANK'||datum['LGA'] == 'YARRA RANGES'",
+            "value": 1
+          },
+          "value": 0
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {"stroke": null},
+    "axis": {"labelFont": "Oxygen", "titleFont": "Oxygen"},
+    "legend": {"labelFont": "Oxygen", "titleFont": "Oxygen"},
+    "header": {"labelFont": "Oxygen", "titleFont": "Oxygen"},
+    "title": {"font": "Oxygen", "fontSize": 16, "fontWeight": 600}
+  }
+}

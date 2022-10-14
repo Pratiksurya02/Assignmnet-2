@@ -1,0 +1,76 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "width": "container",
+  "height": 250,
+  "title": "Bullying over time in the biggest LGAs",
+  "data": {
+    "url": "https://raw.githubusercontent.com/Pratik/FIT3179/Assignment/Data/JoinedDataFiltered.csv"
+  },
+  "transform": [
+    {
+      "filter": {
+        "field": "LGA",
+        "oneOf": [
+          "TAYLORS",
+          "SUNWAY",
+          "MONASH",
+          "APU",
+          "UPM",
+          "UNIVERSITI MALAYA",
+          "HELP",
+          "BAC",
+          "MANIPAL"
+        ]
+      }
+    },
+    {"filter": {"field": "Year", "oneOf": [2020, 2022]}}
+  ],
+  "encoding": {
+    "y": {
+      "field": "Portion Bullied",
+      "type": "quantitative",
+      "title": "Percent of students bullied"
+    },
+    "x": {
+      "field": "LGA",
+      "type": "nominal",
+      "title": "Local Government Area",
+      "axis": {"offset": 5, "ticks": false, "minExtent": 70, "domain": false}
+    }
+  },
+  "layer": [
+    {
+      "mark": "line",
+      "encoding": {"detail": {"field": "LGA", "type": "nominal"}}
+    },
+    {
+      "mark": {"type": "point", "filled": true},
+      "encoding": {
+        "color": {
+          "field": "Year",
+          "type": "ordinal",
+          "scale": {"domain": [2020, 2022]},
+          "title": "Year"
+        },
+        "tooltip": [
+          {"field": "LGA", "type": "nominal", "title": "Local Government Area"},
+          {
+            "field": "Portion Bullied",
+            "type": "quantitative",
+            "title": "Percent Bullied"
+          },
+          {"field": "Year", "type": "quantitative"}
+        ],
+        "size": {"value": 100},
+        "opacity": {"value": 1}
+      }
+    }
+  ],
+  "config": {
+    "view": {"stroke": null},
+    "axis": {"labelFont": "Oxygen", "titleFont": "Oxygen"},
+    "legend": {"labelFont": "Oxygen", "titleFont": "Oxygen"},
+    "header": {"labelFont": "Oxygen", "titleFont": "Oxygen"},
+    "title": {"font": "Oxygen", "fontSize": 16, "fontWeight": 600}
+  }
+}
