@@ -4,7 +4,7 @@
   "height": 400,
   "title": "Bullying vs NAPLAN Results",
   "data": {
-    "url": "https://raw.githubusercontent.com/Pratik/FIT3179/main/Data/JoinedDataFiltered.csv"
+    "url": "https://raw.githubusercontent.com/Pratik/FIT3179/main/Assignmentt/JoinedDataFiltered.csv"
   },
   "params": [
     {
